@@ -19,12 +19,21 @@ function getForecast(city) {
     })
     .then(function (data) {
       document.querySelector("#displayForcast").textContent = "";
+      //a fro loop that loops through the results gathering one form each day
       for (let i = 4; i < data.list.length; i += 8) {
         let weatherContainer = document.createElement("div");
         let dateContainer = document.createElement("h2");
         let windSpeedContainer = document.createElement('p');
         let tempContainer = document.createElement('p');
         let humiContainer = document.createElement('p');
+
+        //add classes for stylying 
+        dateContainer.classList.add('forecastDate');
+        windSpeedContainer.classList.add('windSpeed');
+        tempContainer.classList.add('temp');
+        humiContainer.classList.add('humi');
+        weatherContainer.classList.add('weatherContainerClass')
+
 
         dateContainer.textContent = data.list[i].dt_txt;
         windSpeedContainer.textContent = `windspeed: ${data.list[i].wind.speed}`;
@@ -46,6 +55,7 @@ function getForecast(city) {
 
 
 let searchButton = document.querySelector(".submit");
+let searches = [];
 
 searchButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -54,25 +64,27 @@ searchButton.addEventListener('click', function (event) {
   let city = searchInput.value;
 
   getForecast(city);
-
-  // Save search function that saves the city and appends it to the page
-  let searches = [];
-
-  function saveSearch(city) {
-    searches.push(city);
-
-    let saveSearch = document.getElementById('saveSearch');
-    saveSearch.innerHTML = '';
-
-    searches.forEach(search => {
-      const li = document.createElement('li');
-      li.textContent = search;
-      saveSearch.appendChild(li);
-    });
-  }
-
   saveSearch(city);
-});
+})
+
+// Save search function that saves the city and appends it to the page
+
+function saveSearch(city) {
+  searches.push(city);
+
+  let saveSearch = document.getElementById('saveSearch');
+  saveSearch.innerHTML = '';
+
+  searches.forEach(search => {
+    const li = document.createElement('li');
+    li.textContent = search;
+    li.addEventListener('click', function () {
+      getForecast(search);
+    });
+    saveSearch.appendChild(li);
+  });
+}
+;
 
 
 //second api call to get current weather function called get weather, that call current weather and dsipays it. same link expect forecast is repalced with current 
