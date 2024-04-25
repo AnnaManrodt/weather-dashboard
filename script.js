@@ -81,7 +81,10 @@ function saveSearch(city) {
     li.addEventListener('click', function () {
       getForecast(search);
     });
+    let searchCont = document.querySelector('.searchCont')
+    li.classList.add('btn', 'btn-outline-info')
     saveSearch.appendChild(li);
+    searchCont.appendChild(saveSearch)
   });
 }
 ;
