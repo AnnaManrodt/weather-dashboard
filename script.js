@@ -50,6 +50,9 @@ function getForecast(city) {
         document.querySelector("#displayForcast").appendChild(weatherContainer);
         console.log(data.list[i])
       }
+      .then( ()=>{
+        fetch()
+      })
     })
 }
 
@@ -91,4 +94,6 @@ function saveSearch(city) {
 
 
 //second api call to get current weather function called get weather, that call current weather and dsipays it. same link expect forecast is repalced with current 
+
+
 

@@ -15,4 +15,6 @@ li {
 .weatherContainerClass{
     display: inline-block; /* Or use display: flex; to create a flex container */
     margin-right: 10px; /* Adjust margin as needed */
+    border-color: #333;
+    border-radius: 5px;
 }
