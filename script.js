@@ -50,9 +50,9 @@ function getForecast(city) {
         document.querySelector("#displayForcast").appendChild(weatherContainer);
         console.log(data.list[i])
       }
-      .then( ()=>{
-        fetch()
-      })
+      // .then( ()=>{
+      //   fetch()
+      // })
     })
 }
 
